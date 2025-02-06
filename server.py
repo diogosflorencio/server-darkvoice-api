@@ -17,9 +17,9 @@ app.add_middleware(
 
 # Novo objeto JSON contendo nome de usuário e chave
 usuarios = {
-    "usuario1": {"nome": "João", "key": "chave_123"},
-    "usuario2": {"nome": "Maria", "key": "chave_456"},
-    "usuario3": {"nome": "Carlos", "key": "chave_789"},
+    "usuario1": {"nome": "Cleitin", "key": "3utryg*&T&UG#&Rto73gtf7w3tf973f"},
+    "usuario2": {"nome": "Joao", "key": "twr789t3rf789t387ft87T*(&t8o7wgfuigff"},
+    "usuario3": {"nome": "Ever", "key": "iu3tr7wgf78tf873ofr78two87ft8o73tf87wef"},
 }
 
 @app.get('/')
