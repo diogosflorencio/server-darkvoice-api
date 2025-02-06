@@ -1,23 +1,7 @@
 from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
 import uvicorn
-import requests
-import os
-
-RESTDB_TOKEN = "db318ea2b16bffaa2354f5bc8754036550ac8"
-url = 'https://tintas-c736.restdb.io/rest/tintas-usadas'
-headers = {
-    'Content-type': 'application/json',
-    'x-apikey': RESTDB_TOKEN
-}
-
-def inserir(data):
-    r = requests.post(url, json=data, headers=headers)
-    return r.json()
-
-def listar():
-    r = requests.get(url, headers=headers)
-    return r.json()
+import json
 
 app = FastAPI()
 
@@ -31,16 +15,25 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+# Novo objeto JSON contendo nome de usuário e chave
+usuarios = {
+    "usuario1": {"nome": "João", "key": "chave_123"},
+    "usuario2": {"nome": "Maria", "key": "chave_456"},
+    "usuario3": {"nome": "Carlos", "key": "chave_789"},
+}
+
 @app.get('/')
 def home():
-    return {'data': listar()}
+    # Retorna os dados do JSON com nome e chave dos usuários
+    return {"usuarios": usuarios}
 
 @app.post('/')
-async def adicionar_tinta(request: Request):
+async def adicionar_usuario(request: Request):
+    # Recebe um JSON e faz algo com ele
     data = await request.json()
-    resultado = inserir(data)
-    return resultado
+    # Por exemplo, apenas envia de volta os dados recebidos (a lógica pode ser expandida conforme necessário)
+    return {"received_data": data}
 
 if __name__ == "__main__":
-    port = int(os.environ.get("PORT", 8000))
+    port = 8000
     uvicorn.run(app, host="0.0.0.0", port=port)
