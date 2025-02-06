@@ -1,7 +1,6 @@
 from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
 import uvicorn
-import json
 
 app = FastAPI()
 
@@ -15,24 +14,35 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Novo objeto JSON contendo nome de usuário e chave
-usuarios = {
-    "usuario1": {"nome": "Cleitin", "key": "3utryg*&T&UG#&Rto73gtf7w3tf973f"},
-    "usuario2": {"nome": "Joao", "key": "twr789t3rf789t387ft87T*(&t8o7wgfuigff"},
-    "usuario3": {"nome": "Ever", "key": "iu3tr7wgf78tf873ofr78two87ft8o73tf87wef"},
+# Valid keys database
+valid_keys = {
+    "3utryg*&T&UG#&Rto73gtf7w3tf973f": {"status": "active", "user": "Cleitin"},
+    "twr789t3rf789t387ft87T*(&t8o7wgfuigff": {"status": "expired", "user": "Joao"},
+    "iu3tr7wgf78tf873ofr78two87ft8o73tf87wef": {"status": "active", "user": "Ever"},
 }
 
-@app.get('/')
-def home():
-    # Retorna os dados do JSON com nome e chave dos usuários
-    return {"usuarios": usuarios}
-
 @app.post('/')
-async def adicionar_usuario(request: Request):
-    # Recebe um JSON e faz algo com ele
-    data = await request.json()
-    # Por exemplo, apenas envia de volta os dados recebidos (a lógica pode ser expandida conforme necessário)
-    return {"received_data": data}
+async def verify_key(request: Request):
+    try:
+        data = await request.json()
+        key = data.get('key')
+
+        if not key:
+            return "invalid"
+
+        if key not in valid_keys:
+            return "invalid"
+
+        key_info = valid_keys[key]
+        
+        if key_info["status"] == "expired":
+            return "expirado"
+        
+        if key_info["status"] == "active":
+            return key
+
+    except Exception:
+        return "invalid"
 
 if __name__ == "__main__":
     port = 8000
