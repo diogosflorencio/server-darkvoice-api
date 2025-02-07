@@ -16,9 +16,9 @@ app.add_middleware(
 
 # Valid keys database
 valid_keys = {
-    "3utryg*&T&UG#&Rto73gtf7w3tf9473f": {"status": "active", "user": "Cleitin"},
-    "twr789t3rf789t387ft87T*(&t8o7wgfuigff": {"status": "expired", "user": "Joao"},
-    "iu3tr7wgf78tf873ofr78two87ft8o73tf87wef": {"status": "active", "user": "Ever"},
+    "aaa1": {"status": "active", "user": "Cleitin"},
+    "aaa0": {"status": "expired", "user": "Joao"},
+    "bbb1": {"status": "active", "user": "Ever"},
 }
 
 @app.post('/')
