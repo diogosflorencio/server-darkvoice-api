@@ -16,7 +16,7 @@ app.add_middleware(
 
 # Valid keys database
 valid_keys = {
-    "aaa1": {"status": "active", "user": "Cleitin"},
+    "aaaa1": {"status": "expired", "user": "Cleitin"},
     "aaa0": {"status": "expired", "user": "Joao"},
     "bbb1": {"status": "active", "user": "Ever"},
 }
