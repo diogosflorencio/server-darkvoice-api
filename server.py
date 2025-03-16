@@ -16,7 +16,7 @@ app.add_middleware(
 
 # Valid keys database
 valid_keys = {
-    "9F4jDs0qLp2ZW1BvH7sRTpM8X": {"status": "ativo", "usuario": "usuario1"},
+    "9F4jDs0qLp2ZW1BvH7sRTpM7X": {"status": "ativo", "usuario": "usuario1"},
     "3G1nQs7eYu5Kl8wZu4R2fJ6Bc": {"status": "ativo",  "usuario": "usuario2"},
     "X8vF3cH6mZ9Rn4TqS2wJ1dL0p": {"status": "ativo", "usuario": "usuario3"},
     "P7sM3jA1kL8bV6rT5qN0cW9eY": {"status": "ativo",  "usuario": "usuario4"},
